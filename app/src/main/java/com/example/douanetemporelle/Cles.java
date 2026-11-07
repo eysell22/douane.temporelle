@@ -2,15 +2,15 @@ package com.example.douanetemporelle;
 
 class Cles {
 
-    // num inscri; derniers 4 chiff carte etu
+    //1- رقم التسجيل: آخر 4 أرقام من بطاقة الطالب
     public static final String MATRICULE = "9217";
 
-    // num inscri + "_" nom
+    // 2-دالة ثابتة تبني المفتاح: رقم التسجيل + "_" + الاسم
     public static String construire(String matricule, String nom) {
         return matricule + "_" + nom;
     }
 
-//3)
+//3-مفاتيح جاهزة للاستعمال
     public static String nomVoyageur(String matricule) {
         return construire(matricule, "NOM_VOYAGEUR");
     }

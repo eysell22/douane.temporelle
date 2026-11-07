@@ -9,12 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class VerificationActivity extends AppCompatActivity {
 
-    private String nom;
+    private String nom; //1- الاحتفاظ بالاسم لإرساله للنشاط 3
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_verification);
+        setContentView(R.layout.activity_verification); //affichage du passeport
 
         TextView tvNom = findViewById(R.id.tv_nom_verif_es);
         TextView tvAge = findViewById(R.id.tv_age_verif_es);
@@ -22,7 +22,7 @@ public class VerificationActivity extends AppCompatActivity {
         Button btnApprouver = findViewById(R.id.btn_approuver_es);
         Button btnRefuser = findViewById(R.id.btn_refuser_es);
 
-        // 1- استقبال المعطيات القادمة من النشاط الأول بنفس المفاتيح
+        // 2- استقبال المعطيات القادمة من النشاط الأول بنفس المفاتيح
         String m = Cles.MATRICULE;
         Intent recu = getIntent();
         nom = recu.getStringExtra(Cles.nomVoyageur(m));
@@ -30,21 +30,21 @@ public class VerificationActivity extends AppCompatActivity {
         int destination = recu.getIntExtra(Cles.anneeDestination(m), 0);
         String motif = recu.getStringExtra(Cles.motif(m));
 
-        // 2- calcul d'age temporel
+        //  3- حساب العمر الزمني = سنة الوجهة - سنة الميلاد
         int ageTemporel = destination - naissance;
 
-        // 3- resume
+        // 4- عرض الملخص
         tvNom.setText("Nom : " + nom);
         tvAge.setText("Âge temporel : " + ageTemporel + " ans");
         tvMotif.setText("Motif : " + motif);
 
-        // 4- شرط التعطيل: السبب "Modification du passé" والفرق عدد أولي
+        // 5- شرط التعطيل: السبب "Modification du passé" والفرق عدد أولي
         boolean modif = getString(R.string.motif_modification).equals(motif);
         if (modif && estPremier(ageTemporel)) {
             btnApprouver.setEnabled(false);
         }
 
-        // 5- الزران يرسلان الحكم النهائي (true / false) مع اسم المسافر
+        // 6- الزران يرسلان الحكم النهائي (true / false) مع اسم المسافر
         btnApprouver.setOnClickListener(v -> lancerVerdict(true));
         btnRefuser.setOnClickListener(v -> lancerVerdict(false));
     }
@@ -57,7 +57,7 @@ public class VerificationActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // 6- دالة التحقق من العدد الأولي
+    // 7-التحقق من العدد الأولي
     private boolean estPremier(int n) {
         if (n < 2) return false;
         for (int i = 2; i * i <= n; i++) {
