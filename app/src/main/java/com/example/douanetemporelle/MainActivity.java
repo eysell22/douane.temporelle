@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
         }
         RadioButton rbChoisi = findViewById(idChoisi);
         String motif = rbChoisi.getText().toString();
-    //6- تحويل النصوص إلى أرقام
+        //6- تحويل النصوص إلى أرقام
         int naissance = Integer.parseInt(strNaiss);
         int destination = Integer.parseInt(strDest);
 
-        // -7 إنشاء Intent صريح وإرسال المعطيات
+        // 7- إنشاء Intent صريح وإرسال المعطيات
         String m = Cles.MATRICULE;
         Intent intent = new Intent(MainActivity.this, VerificationActivity.class);
         intent.putExtra(Cles.nomVoyageur(m), nom);
