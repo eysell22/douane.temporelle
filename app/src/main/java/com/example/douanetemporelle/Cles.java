@@ -1,6 +1,6 @@
 package com.example.douanetemporelle;
 
-class Cles {
+public class Cles {
 
     //1- رقم التسجيل: آخر 4 أرقام من بطاقة الطالب
     public static final String MATRICULE = "9217";
